@@ -1,6 +1,6 @@
 # 🔧 Adding PXE Network-Boot Behind a Consumer Router
 
-> *The router had no PXE/TFTP options to configure — so the fix was a second, cooperative DHCP server, not a replacement for the one already running.*
+> *The router had no PXE/TFTP options to configure, so the fix was a second, cooperative DHCP server, not a replacement for the one already running.*
 
 ---
 
@@ -16,15 +16,15 @@
 
 ## 🔍 Symptom
 
-A device trying to PXE/network-boot failed with `PXE-E53: no boot filename received`, because the router didn't expose PXE/TFTP DHCP options (60/93/94/97) anywhere in its UI — there was no way to fix this on the router itself.
+A device trying to PXE/network-boot failed with `PXE-E53: no boot filename received`, because the router didn't expose PXE/TFTP DHCP options (60/93/94/97) anywhere in its UI; there was no way to fix this on the router itself.
 
 ## 🎯 Root Cause / Approach
 
-The fix is a **proxy-DHCP** server, not a replacement DHCP server. Proxy-DHCP answers only PXE-specific boot requests — it does not hand out IP addresses. The router's own DHCP keeps assigning IPs completely undisturbed; the proxy-DHCP server answers the separate "what do I boot" question alongside it. This is the standard way to add PXE to a network whose router can't be configured for it, without replacing or fighting the existing DHCP server.
+The fix is a **proxy-DHCP** server, not a replacement DHCP server. Proxy-DHCP answers only PXE-specific boot requests; it does not hand out IP addresses. The router's own DHCP keeps assigning IPs completely undisturbed; the proxy-DHCP server answers the separate "what do I boot" question alongside it. This is the standard way to add PXE to a network whose router can't be configured for it, without replacing or fighting the existing DHCP server.
 
 ## 🛠️ Fix
 
-Built on a lightweight LXC/VM, confirmed to be on the same subnet as the router and the booting device first. `dnsmasq` does both proxy-DHCP and TFTP in one daemon — no separate TFTP server needed. Boot files came from `netboot.xyz` (an iPXE-based menu that lets you choose what to do with a booting device interactively, useful when you don't want to commit to one OS image in advance), both firmware variants since the target's firmware type wasn't known in advance:
+Built on a lightweight LXC/VM, confirmed to be on the same subnet as the router and the booting device first. `dnsmasq` does both proxy-DHCP and TFTP in one daemon; no separate TFTP server needed. Boot files came from `netboot.xyz` (an iPXE-based menu that lets you choose what to do with a booting device interactively, useful when you don't want to commit to one OS image in advance), both firmware variants since the target's firmware type wasn't known in advance:
 
 ```
 # to /var/lib/tftpboot/
@@ -63,4 +63,4 @@ Then triggered PXE boot on the target device (F12/F9/Esc at startup) and watched
 
 ---
 
-*Part of the [lab-troubleshooting](README.md) collection — real incidents from a live, multi-node home lab, documented as they happened.*
+*Part of the [lab-troubleshooting](README.md) collection, real incidents from a live, multi-node home lab, documented as they happened.*

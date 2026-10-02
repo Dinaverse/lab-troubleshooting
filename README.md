@@ -1,8 +1,8 @@
 # 🧰 Lab Troubleshooting
 
-> *Real incidents from a live, multi-node home lab — root-caused and fixed, documented as they happened.*
+> *Real incidents from a live, multi-node home lab, root-caused and fixed, documented as they happened.*
 
-Every entry here started as an actual outage or a broken workflow somewhere in the lab (Proxmox host, Kali-Master, Arch-GPU, Dell-Gateway, or a connected desktop/laptop) — not a hypothetical. Each one is written up the way it was actually diagnosed: symptom, what got ruled out, root cause, fix, and how it was verified.
+Every entry here started as an actual outage or a broken workflow somewhere in the lab (Proxmox host, Kali-Master, Arch-GPU, Dell-Gateway, or a connected desktop/laptop), not a hypothetical. Each one is written up the way it was actually diagnosed: symptom, what got ruled out, root cause, fix, and how it was verified.
 
 ---
 
@@ -46,4 +46,4 @@ Every failure here got root-caused, not just restarted away. The goal of this re
 
 ---
 
-*Part of the [Dinaverse](https://github.com/Dinaverse) ecosystem — documented as incidents happened, not reconstructed after the fact.*
+*Part of the [Dinaverse](https://github.com/Dinaverse) ecosystem, documented as incidents happened, not reconstructed after the fact.*
